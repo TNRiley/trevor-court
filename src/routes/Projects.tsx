@@ -42,20 +42,21 @@ export default function Projects() {
   }, []);
 
   const allTech = useMemo(
-    () => Array.from(new Set(projects.flatMap((p) => p.tech))).sort(),
+    () => Array.from(new Set((projects || []).flatMap((p) => p.tech || []))).sort(),
     [projects]
   );
   const allDomain = useMemo(
-    () => Array.from(new Set(projects.flatMap((p) => p.domain))).sort(),
+    () => Array.from(new Set((projects || []).flatMap((p) => p.domain || []))).sort(),
     [projects]
   );
 
   const filtered = useMemo(() => {
+    if (!projects || !Array.isArray(projects)) return [];
     const q = filters.q.trim().toLowerCase();
     return projects.filter((p) => {
-      const matchesQ = !q || [p.title, p.summary].some((s) => s.toLowerCase().includes(q));
-      const matchesTech = !filters.tech.length || filters.tech.every((t) => p.tech.includes(t));
-      const matchesDomain = !filters.domain.length || filters.domain.every((d) => p.domain.includes(d));
+      const matchesQ = !q || [p.title, p.summary].some((s) => s?.toLowerCase().includes(q));
+      const matchesTech = !filters.tech.length || filters.tech.every((t) => p.tech?.includes(t));
+      const matchesDomain = !filters.domain.length || filters.domain.every((d) => p.domain?.includes(d));
       return matchesQ && matchesTech && matchesDomain;
     });
   }, [projects, filters]);
@@ -67,14 +68,18 @@ export default function Projects() {
       {loading && <div className="text-sand/70">Loading projects…</div>}
 
       {error && (
-         <div className="mt-2 text-sand/60">
-         Tip: open <code className="text-sand">{(() => {
-           const base = import.meta.env.BASE_URL.endsWith('/') 
-             ? import.meta.env.BASE_URL 
-             : import.meta.env.BASE_URL + '/';
-           return `${base}data/projects.json`;
-         })()}</code> directly in your browser. It should download JSON.
-       </div>
+        <div className="mb-6 rounded-lg border border-clay bg-clay/10 p-4 text-sm">
+          <div className="font-semibold text-clay">Couldn't load projects.json</div>
+          <div className="mt-1 text-sand/80">{error}</div>
+          <div className="mt-2 text-sand/60">
+            Tip: open <code className="text-sand">{(() => {
+              const base = import.meta.env.BASE_URL.endsWith('/') 
+                ? import.meta.env.BASE_URL 
+                : import.meta.env.BASE_URL + '/';
+              return `${base}data/projects.json`;
+            })()}</code> directly in your browser. It should download JSON.
+          </div>
+        </div>
       )}
 
       <div className="flex flex-col md:flex-row gap-6">
