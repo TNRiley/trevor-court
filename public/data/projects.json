@@ -1,0 +1,42 @@
+[
+    {
+      "title": "Player Rankings Dashboard",
+      "slug": "player-dashboard",
+      "summary": "Decile ribbons, pace tracker, and cohort analytics for 12U USTA.",
+      "tech": ["React", "ECharts", "IndexedDB"],
+      "domain": ["Tennis", "DataViz"],
+      "demoUrl": "https://example.com/player-dashboard",
+      "codeUrl": "https://github.com/you/player-dashboard",
+      "status": "live",
+      "thumbnail": "",
+      "year": 2025,
+      "badges": ["USTA 12U", "Velocity", "Acceleration"]
+    },
+    {
+      "title": "ATP Globe",
+      "slug": "atp-globe",
+      "summary": "Explore 2025 ATP Tournaments on a 3D globe.",
+      "tech": ["Three.js", "GeoJSON"],
+      "domain": ["Tennis", "3D"],
+      "demoUrl": "https://tnriley.github.io/2025-ATP-Tournament-Explorer/",
+      "codeUrl": "https://github.com/TNRiley/2025-ATP-Tournament-Explorer?tab=readme-ov-file",
+      "status": "live",
+      "thumbnail": "/thumbs/atp-globe.png",
+      "year": 2025,
+      "badges": ["3D", "Mapping"]
+    },
+    {
+      "title": "Evidence Library",
+      "slug": "evidence-library",
+      "summary": "Curated, searchable evidence for coaches & researchers.",
+      "tech": ["R Shiny", "Database"],
+      "domain": ["Research", "Data"],
+      "demoUrl": "https://example.com/evidence-library",
+      "codeUrl": "https://github.com/you/evidence-library",
+      "status": "live",
+      "thumbnail": "",
+      "year": 2025,
+      "badges": ["Search", "Curation"]
+    }
+  ]
+  
