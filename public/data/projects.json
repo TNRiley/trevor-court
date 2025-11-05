@@ -21,7 +21,7 @@
       "demoUrl": "https://tnriley.github.io/2025-ATP-Tournament-Explorer/",
       "codeUrl": "https://github.com/TNRiley/2025-ATP-Tournament-Explorer?tab=readme-ov-file",
       "status": "live",
-      "thumbnail": "/thumbs/atp-globe.png",
+      "thumbnail": "thumbs/atp-globe.png",
       "year": 2025,
       "badges": ["3D", "Mapping"]
     },
