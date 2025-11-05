@@ -18,7 +18,11 @@ export default function Projects() {
 
   useEffect(() => {
     // Build a URL that works in dev (/) and on GH Pages (/trevor-court/)
-    const dataUrl = new URL("data/projects.json", import.meta.env.BASE_URL).toString();
+    // BASE_URL already includes the leading slash, so we just need to ensure proper joining
+    const base = import.meta.env.BASE_URL.endsWith('/') 
+      ? import.meta.env.BASE_URL 
+      : import.meta.env.BASE_URL + '/';
+    const dataUrl = `${base}data/projects.json`;
 
     fetch(dataUrl, { cache: "no-cache" })
       .then((r) => {
@@ -63,13 +67,14 @@ export default function Projects() {
       {loading && <div className="text-sand/70">Loading projects…</div>}
 
       {error && (
-        <div className="mb-6 rounded-lg border border-clay bg-clay/10 p-4 text-sm">
-          <div className="font-semibold text-clay">Couldn’t load projects.json</div>
-          <div className="mt-1 text-sand/80">{error}</div>
-          <div className="mt-2 text-sand/60">
-            Tip: open <code className="text-sand">{new URL("data/projects.json", import.meta.env.BASE_URL).toString()}</code> directly in your browser. It should download JSON.
-          </div>
-        </div>
+         <div className="mt-2 text-sand/60">
+         Tip: open <code className="text-sand">{(() => {
+           const base = import.meta.env.BASE_URL.endsWith('/') 
+             ? import.meta.env.BASE_URL 
+             : import.meta.env.BASE_URL + '/';
+           return `${base}data/projects.json`;
+         })()}</code> directly in your browser. It should download JSON.
+       </div>
       )}
 
       <div className="flex flex-col md:flex-row gap-6">
