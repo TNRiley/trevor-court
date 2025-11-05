@@ -16,11 +16,21 @@ export default function Projects() {
   const [filters, setFilters] = useState<FilterState>({ q: "", tech: [], domain: [], year: null });
 
   useEffect(() => {
-    fetch("./data/projects.json")
-      .then(r => r.json())
+    // Build a URL that works in dev (/) and on GH Pages (/trevor-court/)
+    const dataUrl = new URL("data/projects.json", import.meta.env.BASE_URL).toString();
+  
+    fetch(dataUrl)
+      .then(r => {
+        if (!r.ok) throw new Error(`Failed to load ${dataUrl}: ${r.status}`);
+        return r.json();
+      })
       .then(setProjects)
-      .catch(() => setProjects([]));
+      .catch(err => {
+        console.error(err);
+        setProjects([]); // keep UI stable
+      });
   }, []);
+  
 
   const allTech = useMemo(
     () => Array.from(new Set(projects.flatMap(p => p.tech))).sort(),
