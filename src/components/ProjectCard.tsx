@@ -3,6 +3,9 @@ import { motion } from "framer-motion";
 
 export default function ProjectCard({ p }: { p: Project }) {
   const hasThumb = Boolean(p.thumbnail);
+const thumbSrc = p.thumbnail?.startsWith("http")
+  ? p.thumbnail
+  : new URL(p.thumbnail, import.meta.env.BASE_URL).toString();
 
   return (
     <motion.article
@@ -13,9 +16,15 @@ export default function ProjectCard({ p }: { p: Project }) {
       className="bg-card/90 backdrop-blur border border-line rounded-2xl shadow-soft overflow-hidden flex flex-col"
     >
       <div className="aspect-video bg-midnight/40">
-        {hasThumb ? (
-          <img src={p.thumbnail} alt={`${p.title} thumbnail`} className="h-full w-full object-cover" />
-        ) : (
+  {hasThumb ? (
+    <img
+      src={thumbSrc}
+      alt={`${p.title} thumbnail`}
+      className="h-full w-full object-cover"
+    />
+  ) : (
+
+
           <div className="h-full w-full grid place-items-center text-sand/60 text-sm">
             {/* fallback visual */}
             <div className="h-8 w-8 rounded-full" style={{ backgroundColor: "var(--ball)" }} />
