@@ -19,8 +19,6 @@ export default function Projects() {
   useEffect(() => {
     // Build a URL that works in dev (/) and on GH Pages (/trevor-court/)
     const dataUrl = new URL("data/projects.json", import.meta.env.BASE_URL).toString();
-    fetch(dataUrl).then(r => r.json()).then(setProjects);
-
 
     fetch(dataUrl, { cache: "no-cache" })
       .then((r) => {
