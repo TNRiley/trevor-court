@@ -1,12 +1,10 @@
 {
   "name": "trevor-court",
-  "private": true,
   "version": "0.0.0",
-  "type": "module",
+  "homepage": "https://YOUR-USERNAME.github.io/trevor-court/",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
-    "lint": "eslint .",
+    "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
