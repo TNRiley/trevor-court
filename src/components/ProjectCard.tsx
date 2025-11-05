@@ -4,19 +4,25 @@ import type { Project } from "../lib/types";
 import { motion } from "framer-motion";
 
 export default function ProjectCard({ p }: { p: Project }) {
-  // Resolve thumbnail against the site base (works in dev “/” and GH Pages “/repo/”)
+  // Resolve thumbnail against the site base (works in dev "/" and GH Pages "/repo/")
   const initialThumb = useMemo(() => {
     if (!p.thumbnail) return "";
-    return p.thumbnail.startsWith("http")
-      ? p.thumbnail
-      : new URL(p.thumbnail, import.meta.env.BASE_URL).toString();
+    if (p.thumbnail.startsWith("http")) return p.thumbnail;
+    
+    // Build URL using string concatenation instead of new URL()
+    const base = import.meta.env.BASE_URL.endsWith('/') 
+      ? import.meta.env.BASE_URL 
+      : import.meta.env.BASE_URL + '/';
+    return `${base}${p.thumbnail}`;
   }, [p.thumbnail]);
 
   // Fallback image (put a file at public/thumbs/fallback.png)
-  const fallbackThumb = useMemo(
-    () => new URL("thumbs/fallback.png", import.meta.env.BASE_URL).toString(),
-    []
-  );
+  const fallbackThumb = useMemo(() => {
+    const base = import.meta.env.BASE_URL.endsWith('/') 
+      ? import.meta.env.BASE_URL 
+      : import.meta.env.BASE_URL + '/';
+    return `${base}thumbs/fallback.png`;
+  }, []);
 
   const [imgSrc, setImgSrc] = useState(initialThumb);
   const hasThumb = Boolean(p.thumbnail);
@@ -39,7 +45,7 @@ export default function ProjectCard({ p }: { p: Project }) {
             className="h-full w-full object-cover"
             loading="lazy"
             decoding="async"
-            onError={(e) => {
+            onError={(_e) => {
               // If primary image fails, swap to fallback once.
               if (imgSrc !== fallbackThumb) setImgSrc(fallbackThumb);
             }}
