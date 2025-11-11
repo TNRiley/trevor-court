@@ -13,8 +13,7 @@ export default function HeroServe() {
       <div className="relative mx-auto max-w-6xl px-4">
         <p className="uppercase tracking-widest text-sm text-sand/70">Data & Design</p>
         <h1 className="mt-3 text-5xl md:text-6xl font-semibold leading-tight">
-          Turning messy data into clean shots.
-        </h1>
+        Data, Set, Match: Sharing the love.        </h1>
         <p className="mt-4 max-w-2xl text-sand/80">
           Tennis-flavored interfaces, rigorous data visuals, and creative tools.
         </p>

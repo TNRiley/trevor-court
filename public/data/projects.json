@@ -28,13 +28,13 @@
     {
       "title": "Player Dashboard",
       "slug": "player-dashboard",
-      "summary": "Player performance dashboard for USTA 12U players.",
-      "tech": ["React", "Echarts"],
+      "summary": "Player Metrics Dashboard.",
+      "tech": ["React", "D3"],
       "domain": ["DataViz", "Tennis"],
-      "demoUrl": "https://github.com/TNRiley",
-      "codeUrl": "https://github.com/TNRiley",
-      "status": "Coming Soon",
-      "thumbnail": "",
+      "demoUrl": "https://tnriley.github.io/ATP-dashboard/",
+      "codeUrl": "https://github.com/TNRiley/ATP-dashboard",
+      "status": "live",
+      "thumbnail": "thumbs/ATPdashboard.png",
       "year": 2025,
       "badges": ["Search", "Curation"]
     }
