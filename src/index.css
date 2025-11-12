@@ -25,19 +25,50 @@ body {
 }
 
 /* Court grid backdrop (lighter, larger cells) */
-.court-grid { position: relative; isolation: isolate; }
-.court-grid::before {
-  content: "";
-  position: absolute; inset: 0;
-  background-image:
-    linear-gradient(transparent 96%, var(--line) 96%),
-    linear-gradient(90deg, transparent 96%, var(--line) 96%);
-  background-size: 120px 120px, 120px 120px;
-  opacity: 0.20; pointer-events: none; z-index: -1;
-}
+.court-grid {
+  /* --- Variables for easy tweaking --- */
+  --line-color: rgba(255, 255, 255, 0.12); /* Main "T" line color */
+  --line-thickness: 2px;                  /* Main "T" line thickness */
+  --grid-color: rgba(255, 255, 255, 0.06); /* Fainter grid color */
+  --grid-spacing: 70px;                   /* Base spacing for the grid */
 
-/* Focus ring */
-:where(button, a, input, select, textarea):focus-visible {
-  outline: 2px solid var(--ball);
-  outline-offset: 2px;
+  /* --- Background Stack --- */
+  /* The first image is ON TOP. */
+  background-image:
+    
+    /* 1. The "T" - Horizontal Service Line */
+    linear-gradient(
+      to bottom,
+      transparent 45%, /* Position line 45% from the top */
+      var(--line-color) 45%,
+      var(--line-color) calc(45% + var(--line-thickness)),
+      transparent calc(45% + var(--line-thickness))
+    ),
+
+    /* 2. The "T" - Vertical Center Line */
+    linear-gradient(
+      to right,
+      transparent 50%, /* Position line in the center */
+      var(--line-color) 50%,
+      var(--line-color) calc(50% + var(--line-thickness)),
+      transparent calc(50% + var(--line-thickness))
+    ),
+
+    /* 3. The Faint Grid - BEHIND */
+    linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+
+  /* --- Size & Repeat for each background --- */
+  background-size:
+    100% 100%,  /* "T" Horizontal line (covers full element) */
+    100% 100%,  /* "T" Vertical line (covers full element) */
+    /* Rectangular grid (wider than it is tall) */
+    calc(var(--grid-spacing) * 1.3) var(--grid-spacing),
+    calc(var(--grid-spacing) * 1.3) var(--grid-spacing);
+
+  background-repeat:
+    no-repeat, /* Don't repeat the "T" lines */
+    no-repeat,
+    repeat,    /* Repeat the faint grid */
+    repeat;
 }

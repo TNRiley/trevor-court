@@ -3,23 +3,23 @@ import { motion } from "framer-motion";
 
 export default function HeroServe() {
   return (
-    <section className="relative overflow-hidden py-20 md:py-28 court-grid">
+    <section className="relative overflow-hidden py-20 md:py-30 court-grid">
       {/* Clay glow */}
       <div
         aria-hidden
         className="absolute inset-0"
-        style={{ background: "radial-gradient(700px 350px at 20% 5%, rgba(216,108,61,0.35), transparent 60%)" }}
+        style={{ background: "radial-gradient(1000px 550px at 20% 20%, rgba(216,108,61,0.35), transparent 60%)" }}
       />
       <div className="relative mx-auto max-w-6xl px-4">
         <p className="uppercase tracking-widest text-sm text-sand/70">Data & Design</p>
         <h1 className="mt-3 text-5xl md:text-6xl font-semibold leading-tight">
-        Data, Set, Match: Sharing the love.        </h1>
+        Data, Set, Match.        </h1>
         <p className="mt-4 max-w-2xl text-sand/80">
-          Tennis-flavored interfaces, rigorous data visuals, and creative tools.
+          Welcome to my practice court
         </p>
         <div className="mt-8 flex flex-wrap gap-4">
-          <ServeButton to="/projects" label="Serve a Project" />
-          <ServeButton to="/lab" label="Explore Lab" secondary />
+          <ServeButton to="/projects" label="Live Demo Projects" />
+          <ServeButton to="/about" label="About Me" secondary />
         </div>
       </div>
     </section>
